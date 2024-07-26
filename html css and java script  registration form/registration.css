@@ -1,0 +1,133 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins' , sans-serif;
+}
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-image: url(assets/bg.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    /* animation: blur 1s linear infinite; */
+
+
+}
+
+.wrapper {
+    display: flex;
+    position:absolute;
+    width: 30%;
+    height: 90%;
+    background: #000;
+    box-shadow: 0 0 10px  #D50000;
+    border-radius: 20px;
+    padding: 40px;
+    animation: animate 1s linear infinite;
+    
+  }
+
+
+.form-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    transition: 1s ease-in-out;
+  
+}
+h2{
+    position: relative;
+    color: #fff;
+    font-size: 30px;
+    text-align: center;
+    animation: animate 1s linear infinite;
+}
+.input-group{
+    position: relative;
+    /* margin: 10px 0; */
+    /* border-bottom: 2px solid #fff; */
+}
+.input-group label{
+    position: absolute;
+    top: 50px;
+    left: 5px;
+    transform: translateY(-60px);
+    font-size: 15px;
+    color: #fff;
+    /* pointer-events: none;
+    transition: .5s; */
+
+}
+.input-group input{
+        width: 320px;
+        height: 40px;
+        font-size: 16px;
+        background-color: #2121217a;
+        color: #fff;
+        padding: 0 5px;
+        /* background: transparent; */
+        border: none;
+        outline: none;
+        margin: 10px 0;
+        border-radius: 25px;
+
+}
+
+.error-message{
+    color: #fff;
+
+
+}
+/* .input-group input:focus~label,
+.input-group input:valid~label {
+  top: -5px;
+} */
+.remember {
+    margin: -5px 0 15px 5px;
+  }
+
+span{
+    position: inherit;
+    display: block;
+} 
+  .remember label {
+    position: relative;
+    color: #fff;
+    font-size: 14px;
+  }
+ button{
+    position: relative;
+    width: 100%;
+    height: 40px;
+    background: #D50000;
+    box-shadow: 0 0 10px #D50000;
+    font-size: 16px;
+    color: #fff;
+    font-weight: 500;
+    cursor: pointer;
+    border-radius: 30px;
+    border: none;
+    outline: none;
+ }
+ .form-wrapper:hover {
+    animation: animate 1s linear infinite;
+  }
+@keyframes animate{
+
+    100%{
+        filter: hue-rotate(360deg);
+    }
+}
+
+@keyframes blur{
+
+    100%{
+        filter: blur(1px);
+    }
+}

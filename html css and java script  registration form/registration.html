@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+    <link rel="stylesheet" href="registration.css">
+</head>
+
+<body>
+    <div class="wrapper"></div>
+    <div class="form-wrapper">
+        <form id="registration-form"  onsubmit="return validateForm()">
+            <h2>Sign up</h2>
+            <div class="input-group">
+                <input type="text" id="username" name="username" required>
+                <label for="username">UserName</label>
+                <span class="error-message" id="username-error"> </span>
+            </div>
+            <div class="input-group">
+                <input type="email" id="email" placeholder="example@gmail.com" >
+                <label for="email">Email</label>
+                <span class="error-message" id="email-error"></span>
+            </div>
+            <div class="input-group">
+                <input type="Password" id="password" placeholder="enter password"  required>
+                <label for="Password">Password</label>
+                <span class="error-message" id="password-error"></span>
+            </div>
+            <div class="input-group">
+                <input type="password" id="confirm-password" name="confirm-password" required>
+                <label for="confirm-password">Confirm Password</label>
+                <span class="error-message" id="confirm-password-error"></span>
+            </div>
+            <div class="input-group">
+                <input type="tel" id="number" name="number" required>
+                <label for="number">Phone Number</label>
+                <span class="error-message" id="number-error"></span>
+            </div>
+            <div class="remember">
+                <label><input type="checkbox" id="terms" name="terms" required> I agree to the terms &
+                    conditions</label>
+                <span class="error-message" id="terms-error"></span>
+            </div>
+            <button type="submit">Sign Up</button>
+            <button >Reset</button>
+        </form>
+    </div>
+
+    <script type="text/javascript">
+
+        document.getElementById("registration-form").addEventListener("submit", async (event) => {
+            event.preventDefault();
+            const result = await validateForm();
+            if (result.success) {
+                // Submit the form programmatically if validation is successful
+                event.target.submit();
+            }
+        });
+
+        async function validateForm() {
+            let username = document.getElementById("username").value;
+            let email = document.getElementById("email").value;
+            let password = document.getElementById("password").value;
+            let confirmPassword = document.getElementById("confirm-password").value;
+            let number = document.getElementById("number").value;
+            let terms = document.getElementById("terms").checked;
+
+            let usernameError = document.getElementById("username-error");
+            let emailError = document.getElementById("email-error");
+            let passwordError = document.getElementById("password-error");
+            let confirmPasswordError = document.getElementById("confirm-password-error");
+            let numberError = document.getElementById("number-error");
+            let termsError = document.getElementById("terms-error");
+            let isValid = true;
+
+            // UserName validation
+            if (username.trim() === "") {
+                usernameError.textContent = "Username is required";
+                usernameError.style.display = "block";
+                isValid = false;
+            } else {
+                usernameError.style.display = "none";
+            }
+
+           
+
+            // Password validation
+            const passwordValid = /^(?=.*[A-Z])(?=.*[!@#$%^&*(),.?":{}|<>])(?=.*\d).{8,}$/;
+            if (password.trim() === "") {
+                passwordError.textContent = "Password is required";
+                passwordError.style.display = "block";
+                isValid = false;
+            } else if (password.length < 8) {
+                 passwordError.textContent = "Password must be at least 8 characters long ";
+                 passwordError.style.display = "block";
+                 isValid = false;
+            }else{
+                passwordError.textContent =" password validated";
+                passwordError.style.color = "green";
+            }
+
+            // Confirm Password validation
+            if (confirmPassword.trim() === "") {
+                confirmPasswordError.textContent = "Confirm Password is required";
+                confirmPasswordError.style.display = "block";
+                isValid = false;
+            } else if (password !== confirmPassword) {
+                confirmPasswordError.textContent = "Passwords do not match";
+                confirmPasswordError.style.display = "block";
+                isValid = false;
+            } else {
+                confirmPasswordError.textContent =" password validated";
+                confirmPasswordError.style.color = "green";
+                
+            }
+
+            // Phone Number validation
+            if (number.trim() === "") {
+                numberError.textContent = "Phone number is required";
+                numberError.style.display = "block";
+                isValid = false;
+            } else if (number.length < 10) {
+                numberError.textContent = "Invalid phone number";
+                numberError.style.display = "block";
+                isValid = false;
+            } else {
+                numberError.textContent =" password validated";
+                numberError.style.color = "green";
+                
+            }
+
+            // Terms validation
+            if (!terms) {
+                termsError.textContent = "You must agree to the terms & conditions";
+                termsError.style.display = "block";
+                isValid = false;
+            } else {
+                termsError.textContent =" password validated";
+                termsError.style.color = "green";
+                
+            }
+
+            return { success: isValid };
+        }
+
+
+         // Email validation
+         function validateEmail(email) {
+            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return re.test(String(email).toLowerCase());
+        
+            if (email.trim() === "") {
+                emailError.textContent = "Email is required";
+                emailError.style.display = "block";
+                isValid = false;
+            } else if (!validateEmail(email)) {
+                emailError.textContent = "Please enter a valid email address (example@gmail.com)";
+                emailError.style.display = "block";
+                isValid = false;
+            } else {
+                emailError.style.display = "none";
+            }
+           }
+        
+    </script>
+</body>
+
+</html>
